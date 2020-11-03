@@ -34,21 +34,21 @@ void trap(double a, double b, int n, char f){
     double area = 0;
     /*Since array would not be an option, since n is not a constant, i have just allocated some memory, equal to the the size of an double in bytes times n
     and stored it to a pointer, so we can dynamiclly chagnes x and y for every call to this function depending on n*/
-    double *x = malloc(sizeof(double) * n);
-    double *y = malloc(sizeof(double) * n);
+    double *x = malloc(sizeof(double) * (n + 1));
+    double *y = malloc(sizeof(double) * (n + 1));
     
     /*Calculating each x accordingly to n, we can store it to x, like it was an array, since that is the same as derefrencing it like *(x + i)*/
-    for (i = 0; i < n; i++) x[i] = a + i * h;
+    for (i = 0; i <= n; i++) x[i] = a + i * h;
     /*If the function there needs to be called is g, we callculate each g(x), and then we calculate the area and prints it*/
     if (f == 'g'){
-        for (i = 0; i < n; i++) y[i] = fg(x[i]); 
-        for (i = 0; i < n - 1; i++) area += (((y[i] + y[i + 1])) / 2) * h;
+        for (i = 0; i <= n; i++) y[i] = fg(x[i]); 
+        for (i = 0; i <= n - 1; i++) area += (((y[i] + y[i + 1])) / 2) * h;
         printf("The area under the curve %c(x) = x * x * sin(x) from %f to %f is %f for n = %d\n", f, a, b, area, n);
     }
     /*If the function there needs to be called is h, we callculate each h(x), and then we calculate the area and prints it*/
     else if (f == 'h'){
-        for (i = 0; i < n; i++) y[i] = fh(x[i]);
-        for (i = 0; i < n - 1; i++) area += (((y[i] + y[i + 1])) / 2) * h;
+        for (i = 0; i <= n; i++) y[i] = fh(x[i]);
+        for (i = 0; i <= n - 1; i++) area += (((y[i] + y[i + 1])) / 2) * h;
         printf("The area under the curve %c(x) = sqrt(4 - x * x) from %f to %f is %f for n = %d\n", f, a, b, area, n);
     }
     
