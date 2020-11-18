@@ -11,8 +11,15 @@ int main(int argc, char **argv)
 	char *warehouse = NULL;
 	char *id = NULL;
 	char *qaulifiers = NULL;
+  	
 	/*Declaring and initializing productcode pointer to the productcode argument given at cli*/
 	char *productCode = *(argv + 1);
+
+	/*Checking if an product code was given*/
+	if (argc != 2){
+		printf("MMOC.c only accepts 1 input parameter, ex. ./a.out \"product code\"\n");
+		return 0;
+	}
 
 	/*Calling getInfo, with alle the pointers as parameters*/
 	getInfo(productCode, &warehouse, &id, &qaulifiers);
